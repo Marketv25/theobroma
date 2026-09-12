@@ -156,7 +156,7 @@ function TheobromaPage() {
         <div className="mx-auto max-w-7xl">
           <SectionTitle eyebrow="01 · CACAO" title={t.more.title} body={t.more.body} />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {t.discovery.map(([title, body], index) => <DiscoveryCard key={title} index={index} title={title} body={body} />)}
+            {t.discovery.map((item, index) => <DiscoveryCard key={item[0]} index={index} title={item[0] ?? ""} body={item[1] ?? ""} />)}
           </div>
         </div>
       </section>
