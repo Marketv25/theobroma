@@ -116,6 +116,8 @@ function TheobromaPage() {
     document.documentElement.lang = language;
     document.title = seo[language].title;
     document.querySelector('meta[name="description"]')?.setAttribute("content", seo[language].description);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", seo[language].title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", seo[language].description);
   }, [language]);
 
   const switchLanguage = (next: Language) => setLanguage(next);
@@ -125,7 +127,7 @@ function TheobromaPage() {
       <Header language={language} t={t} menuOpen={menuOpen} setMenuOpen={setMenuOpen} switchLanguage={switchLanguage} />
       <section id="home" className="hero-grid relative min-h-[calc(100svh-5rem)] overflow-hidden border-b-4 border-cacao bg-primary pt-24">
         <LeafCluster className="float-soft absolute -left-16 top-24 w-56 rotate-12 text-leaf-light opacity-80 sm:w-72" />
-        <CacaoPod className="float-soft absolute -right-7 bottom-10 w-32 rotate-12 text-pod sm:right-6 sm:w-44" />
+        <CacaoPod className="float-soft absolute -right-7 top-24 hidden w-32 rotate-12 text-pod sm:right-6 sm:block sm:w-44" />
         <Hummingbird className="drift absolute right-[8%] top-28 hidden w-32 text-pink md:block" />
         <div className="relative mx-auto grid min-h-[calc(100svh-5rem)] max-w-7xl items-center gap-8 px-5 pb-12 pt-8 md:grid-cols-[1.08fr_.92fr] md:px-10 lg:px-16">
           <div className="z-10 max-w-3xl">
@@ -237,7 +239,7 @@ function TheobromaPage() {
           <SectionTitle eyebrow="08 · VISÍTANOS / VISIT US" title={t.visit.title} body={t.visit.body} />
           <div className="mt-12 grid border-4 border-cacao bg-primary shadow-retro lg:grid-cols-2">
             <div className="p-6 sm:p-10"><p className="font-display text-4xl text-cacao">THEOBROMA</p><p className="mt-1 font-editorial text-xl italic text-cacao">{siteConfig.subtitle[language]}</p><div className="mt-8 space-y-5 text-cacao"><p className="flex gap-3"><MapPin className="mt-1 h-5 w-5 shrink-0" />{siteConfig.address}</p><p className="flex gap-3"><Clock3 className="mt-1 h-5 w-5 shrink-0" />{siteConfig.hours[language]}</p></div><div className="mt-8 flex flex-wrap gap-3"><Action href={siteConfig.mapsUrl} primary>{t.hero.directions}</Action><Action href={whatsappUrl(messages.general[language])}><MessageCircle />WhatsApp</Action></div><p className="mt-8 border-t-2 border-cacao/20 pt-5 text-sm font-semibold text-cacao/80">{t.visit.note}</p></div>
-            <a href={siteConfig.mapsUrl} target="_blank" rel="noreferrer" aria-label={t.visit.map} className="group relative min-h-80 overflow-hidden border-t-4 border-cacao bg-yellow lg:border-l-4 lg:border-t-0"><div className="absolute inset-5 border-2 border-dashed border-cacao/50 hero-grid"/><div className="absolute inset-0 grid place-items-center"><div className="rounded-full border-4 border-cacao bg-pink p-5 shadow-retro transition-transform group-hover:-translate-y-1"><MapPin className="h-10 w-10 text-cacao" /></div></div><span className="absolute bottom-5 left-5 bg-cacao px-4 py-2 text-sm font-bold text-cream">{t.visit.map} ↗</span></a>
+            <div className="relative min-h-80 overflow-hidden border-t-4 border-cacao bg-yellow lg:border-l-4 lg:border-t-0"><iframe title={t.visit.map} src="https://www.google.com/maps?q=Calle%205%20%232-54%2C%20Minca%2C%20Magdalena%2C%20Colombia&output=embed" className="absolute inset-0 h-full w-full border-0 grayscale-[20%]" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><a href={siteConfig.mapsUrl} target="_blank" rel="noreferrer" className="absolute bottom-5 left-5 bg-cacao px-4 py-2 text-sm font-bold text-cream shadow-retro">{t.visit.map} ↗</a></div>
           </div>
         </div>
       </section>
