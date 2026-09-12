@@ -19,6 +19,9 @@
  */
 
 @theme inline {
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Bree Serif", serif;
+  --font-editorial: "Lora", serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,29 +62,51 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-cacao: var(--cacao);
+  --color-jungle: var(--jungle-ink);
+  --color-yellow: var(--pod-yellow);
+  --color-orange: var(--cacao-orange);
+  --color-pink: var(--jaguar-pink);
+  --color-guava: var(--guava);
+  --color-leaf: var(--leaf);
+  --color-leaf-light: var(--leaf-light);
+  --color-violet: var(--violet);
+  --color-cream: var(--cream);
+  --color-mint: var(--mint);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.35rem;
+  --cream: oklch(0.92 0.05 83);
+  --cacao: oklch(0.25 0.06 30);
+  --jungle-ink: oklch(0.2 0.01 310);
+  --pod-yellow: oklch(0.84 0.16 91);
+  --cacao-orange: oklch(0.72 0.14 67);
+  --jaguar-pink: oklch(0.75 0.13 350);
+  --guava: oklch(0.73 0.11 5);
+  --leaf: oklch(0.46 0.1 140);
+  --leaf-light: oklch(0.7 0.13 139);
+  --violet: oklch(0.33 0.09 307);
+  --mint: oklch(0.92 0.055 153);
+  --background: var(--cream);
+  --foreground: var(--cacao);
+  --card: var(--cream);
+  --card-foreground: var(--cacao);
+  --popover: var(--cream);
+  --popover-foreground: var(--cacao);
+  --primary: oklch(0.76 0.09 184);
+  --primary-foreground: var(--cacao);
+  --secondary: var(--pod-yellow);
+  --secondary-foreground: var(--cacao);
+  --muted: var(--mint);
+  --muted-foreground: oklch(0.39 0.055 133);
+  --accent: var(--jaguar-pink);
+  --accent-foreground: var(--cacao);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: var(--cacao);
+  --input: var(--cacao);
+  --ring: var(--leaf);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +165,42 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    letter-spacing: 0;
   }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 3px solid var(--pod-yellow); outline-offset: 3px; }
+}
+
+@utility shadow-retro {
+  box-shadow: 7px 7px 0 var(--cacao);
+}
+
+@utility drop-shadow-retro {
+  filter: drop-shadow(4px 5px 0 var(--jaguar-pink));
+}
+
+@utility hero-grid {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--cacao) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--cacao) 10%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@utility border-3 { border-width: 3px; }
+
+@keyframes float-soft { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
+@keyframes drift { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-10px, 6px); } }
+@keyframes reveal-jaguar { 0%, 100% { transform: translateY(10px); } 50% { transform: translateY(0); } }
+
+.float-soft { animation: float-soft 7s ease-in-out infinite; }
+.drift { animation: drift 6s ease-in-out infinite; }
+.reveal-jaguar { animation: reveal-jaguar 8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
